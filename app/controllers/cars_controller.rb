@@ -1,5 +1,10 @@
 class CarsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :set_car, only: %i[ edit update ]
+
+  def index
+    @cars = Car.all
+  end
 
   def new
     @car = Car.new

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>Cars</h1>
+  </div>
+
+  <div class="cards">
+    <% @cars.each do |car| %>
+      <%= render "shared/card_car", car:car %>
+    <% end %>
+  </div>
+</div>
