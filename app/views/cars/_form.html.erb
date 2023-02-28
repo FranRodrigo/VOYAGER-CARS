@@ -1,0 +1,24 @@
+<%= simple_form_for @car do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+    <div class="d-flex justify-content-between">
+      <div class="col-5">
+        <%= f.input :brand %>
+      </div>
+      <div class="col-5">
+        <%= f.input :model %>
+      </div>
+    </div>
+      <%= f.input :location %>
+      <%= f.input :number_plate %>
+      <%= f.input :capacity, collection: 1..5 %>
+      <%= f.input :year %>
+      <%= f.input :price %>
+    </div>
+
+    <div class="form-actions d-flex justify-content-center">
+      <%= f.submit 'Save car', class: 'btn btn-primary col-4 text-center' %>
+    </div>
+  <% end %>
