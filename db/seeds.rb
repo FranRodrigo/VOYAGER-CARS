@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 Car.destroy_all
 
-john = User.create(first_name: "John", last_name: "Smith", email: "user1@aol.com", address: "Köln")
+john = User.create(first_name: "John", last_name: "Smith", email: "user1@aol.com", address: "Köln", password: "password")
 
 puts "Creating Cars"
 bmw = { brand: "Bmw", model: "Serie 3", location: "Ruldorfplatz", number_plate: "Kaa7586", capacity: "5", year: "2018", price: "35", user: john }
