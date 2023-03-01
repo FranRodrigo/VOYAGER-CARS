@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 Car.destroy_all
+User.destroy_all
+# Booking.destroy_all
 
 john = User.create(first_name: "John", last_name: "Smith", email: "user1@aol.com", address: "Köln", password: "password")
 
