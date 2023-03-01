@@ -1,11 +1,23 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h1>Cars</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1572401611152-cf63d874b019?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80);">
+  <div class="container">
+    <h1>Rent a car the sustainable way!</h1>
+    <p>Going somewhere and leaving your car at home?</p>
+    <p>Looking for a more budget-friendly way to rent a car?</p>
+    <p>Rent it (out) on CAR-VOYAGER</p>
   </div>
+</div>
 
+
+
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center">
+    <a class="mx-auto button btn-ghost" href="#">Where would you like to rent a car?</a>
+  </div>
   <div class="cards">
     <% @cars.each do |car| %>
       <%= render "shared/card_car", car:car %>
     <% end %>
   </div>
 </div>
+
+<%= render "footer" %>
