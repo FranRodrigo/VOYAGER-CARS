@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "cars#index"
 
-  resources :cars
   get 'dashboard', to: 'pages#dashboard'
+  resources :cars do
+    resources :bookings, only: :create
+  end
   # resources :plants, only: :destroy do
   #   resources :plant_tags, only: [:new, :create]
   # end

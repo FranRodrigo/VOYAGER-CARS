@@ -1,0 +1,22 @@
+<div class="container">
+
+  <%= image_tag "bmw.jpg", class: "w-70 rounded-4 car-image" %>
+
+  <div class="car-details">
+    <h1><%= @car.brand %> (<%= @car.model %> from <%= @car.year %>)</h1>
+    <p><i class="fa-solid fa-coins"></i></i><%= @car.price %>,- € per day</p>
+
+    <p><i class="fa-solid fa-location-dot"></i> <%= @car.location %></p>
+    <p><i class="fa-solid fa-people-group"></i></i> <%= @car.capacity %> seats</p>
+  </div>
+
+  <h2>Book this car</h2>
+
+  <%= simple_form_for([@car, @booking]) do |f| %>
+    <%= f.input :pickup_day, as: :date, html5: true %>
+    <%= f.input :return_day, as: :date, html5: true %>
+    <%= f.submit "Book it", class: "btn btn-primary" %>
+  <% end %>
+
+
+</div>
