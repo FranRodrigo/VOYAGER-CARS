@@ -6,7 +6,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
-# raise
     @user_cars = @user.cars
   end
 end
