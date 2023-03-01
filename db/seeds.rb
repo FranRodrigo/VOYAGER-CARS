@@ -8,6 +8,8 @@
 require "open-uri"
 Booking.destroy_all
 Car.destroy_all
+User.destroy_all
+# Booking.destroy_all
 
 john = User.create(first_name: "John", last_name: "Smith", email: "user1@aol.com", address: "Köln", password: "password")
 

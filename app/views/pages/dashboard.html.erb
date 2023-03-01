@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Hi, <%= @user.first_name %></h1>
+
+  <%= link_to 'Add car', new_car_path %>
+
+  <h2 class="section-title">Previous Bookings</h2>
+  <ul class="cards">
+    <% @user_cars.each do |car|%>
+      <%= render "shared/card_car", car:car %>
+    <% end %>
+  </ul>
+
+  <h2 class="section-title">Cars You Offer</h2>
+  <ul class="cards">
+    <% @user.bookings.each do |b| %>
+    <li class="card-car">
+      <%= cl_image_tag b.car.photos.first.key, height: 200, width: 300, crop: :fill %>
+      <div class="card-info">
+        <p class="duration"> <%= b.pickup_day %> - <%= b.return_day %> </p>
+        <h3 class="card-title"><%= b.car.brand %></h3>
+        <%= b.car.location %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
