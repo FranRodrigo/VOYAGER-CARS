@@ -10,7 +10,6 @@ class BookingsController < ApplicationController
       redirect_to car_path(@car)
       flash[:notice] = "Thanks for booking"
     else
-      flash[:alert] = "Booking not successful"
       render "cars/show"
     end
   end
