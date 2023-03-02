@@ -9,6 +9,11 @@
 
     <p><i class="fa-solid fa-location-dot"></i> <%= @car.location %></p>
     <p><i class="fa-solid fa-people-group"></i></i> <%= @car.capacity %> seats</p>
+    <% if @car.user == current_user %>
+      <%= link_to "Delete", car_path(@car),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <%= link_to "Update", edit_car_path(@car) %>
+    <% end %>
   </div>
 
   <h2>Book this car</h2>

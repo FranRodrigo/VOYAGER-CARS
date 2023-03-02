@@ -1,7 +1,11 @@
 <%= link_to car_path(car) do  %>
   <div class="card-car">
-  <%= cl_image_tag car.photos.first.key, height: 300, width: 400, crop: :fill %>
-    <%# <img src="https://www.topgear.com/sites/default/files/2022/07/12.jpg" /> %>
+    <% if car.photos.any? %>
+      <%= cl_image_tag car.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+     <img src="https://teja9.kuikr.com/images/car/default-cars.jpeg" />
+    <% end %>
+    <%# <img src="https://teja9.kuikr.com/images/car/default-cars.jpeg" /> %>
     <div class="card-car-infos">
       <div>
         <h2><%= car.brand.upcase %></h2>
