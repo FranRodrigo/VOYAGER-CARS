@@ -1,11 +1,11 @@
 class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
-  before_action :set_car, only: %i[ edit update show ]
+  before_action :set_car, only: %i[ edit update show delete]
 
   def show
     @booking = Booking.new
+    # @car.user = current_user
   end
-
 
   def index
     @cars = Car.all
@@ -31,10 +31,15 @@ class CarsController < ApplicationController
 
   def update
     if @car.save
-      redirect_to car_path(@car), notice: 'Car was successfully added.'
+      redirect_to car_path(@car), notice: 'Car was successfully changed.'
     else
       render :new
     end
+  end
+
+  def delete
+    @car.destroy
+    redirect_to dashboadr_path, notice: 'Car was successfully deleted.'
   end
 
   private
