@@ -8,7 +8,11 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars = Car.all
+    if params[:query].present?
+      @cars = Car.search_by_location(params[:query])
+    else
+      @cars = Car.all
+    end
   end
 
   def new
