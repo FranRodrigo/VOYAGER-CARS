@@ -16,13 +16,13 @@
     <% end %>
   </div>
 
-  <h2>Book this car</h2>
+  <% if @car.user != current_user %>
+    <h2>Book this car</h2>
 
-  <%= simple_form_for([@car, @booking], local:true, data: { turbo:false}) do |f| %>
-    <%= f.input :pickup_day, as: :date, html5: true %>
-    <%= f.input :return_day, as: :date, html5: true %>
-    <%= f.submit "Book it", class: "btn btn-primary" %>
+    <%= simple_form_for([@car, @booking], local:true, data: { turbo:false}) do |f| %>
+      <%= f.input :pickup_day, as: :date, html5: true %>
+      <%= f.input :return_day, as: :date, html5: true %>
+      <%= f.submit "Book it", class: "btn btn-primary" %>
+    <% end %>
   <% end %>
-
-
 </div>
