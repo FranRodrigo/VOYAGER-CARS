@@ -7,8 +7,21 @@
 </div>
 
 <div class="container">
+
+<div class="search d-flex justify-content-center align-items-center">
+<%= form_with url: cars_path, method: :get, class: "d-flex form-search" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control-search",
+    placeholder: "Search destination "
+  %>
+  <%= submit_tag "S", class: "btn-search" %>
+<i class="fa-solid fa-magnifying-glass"></i>
+<% end %>
+</div>
+
   <div class="d-flex justify-content-center align-items-center">
-    <a class="mx-auto button btn-ghost" href="#">Where would you like to rent a car?</a>
+    <%# <a class="mx-auto button btn-ghost" href="#">Where would you like to rent a car?</a> %>
   </div>
   <div class="cards">
     <% @cars.each do |car| %>

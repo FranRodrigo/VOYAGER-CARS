@@ -4,4 +4,11 @@ class Car < ApplicationRecord
   has_many_attached :photos
 
   validates :brand, :model, :location, :number_plate, :capacity, :year, :price, presence: true
+
+  include PgSearch::Model
+  pg_search_scope :search_by_location,
+    against: [ :location ],
+    using: {
+      tsearch: { prefix: true }
+    }
 end

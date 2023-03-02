@@ -1,0 +1,41 @@
+.btn-search {
+  color: #3A506B;
+  background-color: #3A506B;
+  padding: 0.5em 1em;
+  border-radius: 0 1.25rem 1.25rem 0;
+  font-weight: 300;
+  letter-spacing: 5px;
+  opacity: .8;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.form-search {
+  .btn-search {
+    border: none;
+  }
+}
+
+.btn-search:hover {
+  background-color: #CED0CE;
+  opacity: .7;
+  color: #3A506B;
+  font-weight: 400;
+}
+
+.form-control-search {
+  border-radius: 1.25rem 0 0 1.25rem;
+  padding: 0.5rem 8rem;
+  border: 1px solid grey;
+}
+
+.form-search {
+  position: relative;
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  bottom: 13px;
+  right: 18px;
+  color: white;
+}
