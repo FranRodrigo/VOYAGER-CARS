@@ -1,10 +1,9 @@
 class CarsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[ index show ]
-  before_action :set_car, only: %i[ edit update show delete]
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_car, only: %i[edit update show destroy]
 
   def show
     @booking = Booking.new
-    # @car.user = current_user
   end
 
   def index
@@ -30,16 +29,16 @@ class CarsController < ApplicationController
   end
 
   def update
-    if @car.save
+    if @car.update(car_params)
       redirect_to car_path(@car), notice: 'Car was successfully changed.'
     else
       render :new
     end
   end
 
-  def delete
+  def destroy
     @car.destroy
-    redirect_to dashboadr_path, notice: 'Car was successfully deleted.'
+    redirect_to dashboard_path, notice: 'Car was successfully deleted.'
   end
 
   private

@@ -10,8 +10,7 @@
     <p><i class="fa-solid fa-location-dot"></i> <%= @car.location %></p>
     <p><i class="fa-solid fa-people-group"></i></i> <%= @car.capacity %> seats</p>
     <% if @car.user == current_user %>
-      <%= link_to "Delete", car_path(@car),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <%= link_to "Delete", car_path(@car), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
       <%= link_to "Update", edit_car_path(@car) %>
     <% end %>
   </div>
@@ -20,9 +19,12 @@
     <h2>Book this car</h2>
 
     <%= simple_form_for([@car, @booking], local:true, data: { turbo:false}) do |f| %>
-      <%= f.input :pickup_day, as: :date, html5: true %>
-      <%= f.input :return_day, as: :date, html5: true %>
-      <%= f.submit "Book it", class: "btn btn-primary" %>
+      <div data-controller="booking-price" data-booking-price-price-value="<%= @car.price %>">
+        <%= f.input :pickup_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "pickup", action: "change->booking-price#calcPrice" } } %>
+        <%= f.input :return_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "return", action: "change->booking-price#calcPrice" } } %>
+        <p>Price: <span data-booking-price-target="price">Please update dates</span></p>
+        <%= f.submit "Book it", class: "btn btn-primary", data: { action: "click->booking-price#getData" } %>
+      </div>
     <% end %>
   <% end %>
 </div>
