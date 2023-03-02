@@ -2,13 +2,13 @@
   <div class="container">
     <h1>V O Y A G E R   C A R</h1>
     <h2>The modern way to rent a car</h2>
-    <a class="btn-banner" href="#cards">BOOK NOW</a>
+    <a class="btn-banner" href="#search">BOOK NOW</a>
   </div>
 </div>
 
 <div class="container">
 
-<div class="search d-flex justify-content-center align-items-center">
+<div id="search" class="search d-flex justify-content-center align-items-center">
 <%= form_with url: cars_path, method: :get, class: "d-flex form-search" do %>
   <%= text_field_tag :query,
     params[:query],
@@ -22,7 +22,7 @@
 
   <div class="d-flex justify-content-center align-items-center">
   </div>
-  <div class="cards" id="cards">
+  <div class="cards">
     <% @cars.each do |car| %>
       <%= render "shared/card_car", car:car %>
     <% end %>
