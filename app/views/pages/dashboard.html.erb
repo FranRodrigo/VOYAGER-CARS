@@ -10,12 +10,14 @@
     <ul class="cards">
       <% @user.bookings.each do |b| %>
         <li class="card-car">
-          <%= cl_image_tag b.car.photos.first.key, height: 200, width: 300, crop: :fill %>
+        <%= link_to car_path(b.car) do  %>
+          <%= cl_image_tag b.car.photos.first.key, height: 200, width: 400, crop: :fill %>
           <div class="card-info">
             <p class="duration"><%= b.pickup_day %> - <%= b.return_day %></p>
             <h3 class="card-title"><%= b.car.brand %></h3>
             <%= b.car.location %>
           </div>
+          <% end %>
         </li>
       <% end %>
     </ul>
