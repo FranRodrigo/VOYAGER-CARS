@@ -1,6 +1,7 @@
 <div class="container">
-
-  <%= image_tag "bmw.jpg", class: "w-70 rounded-4 car-image" %>
+  <% @car.photos.each do |photo| %>
+  <%= cl_image_tag @car.photos.first.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
 
   <div class="car-details">
     <h1><%= @car.brand %> (<%= @car.model %> from <%= @car.year %>)</h1>
