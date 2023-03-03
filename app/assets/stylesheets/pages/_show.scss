@@ -1,13 +1,9 @@
-.car-image {
-  max-width: 100%;
+.picture-car {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 30px;
 }
 
-.car-details {
-  margin: 30px 0;
-}
-
-.price{
-font-size: 1.5em;
-
-
+.picture-shadow{
+  box-shadow: 0.1rem 0.5rem 0.8rem 0.1rem #00000091;
 }
