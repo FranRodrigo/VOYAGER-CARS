@@ -13,7 +13,7 @@
       <h2 class="card-car-pricing"><%= car.price %> EUR<p>daily rate</p></h2>
       <%# TODO: make this piture come from the car dynamically %>
       <% if car.user.avatar.attached? %>
-        <%= cl_image_tag car.user.avatar.key, class: "avatar" %>
+        <%= cl_image_tag car.user.avatar.key, class: "card-car-user avatar-bordered" %>
       <% else %>
         <img src="https://www.shutterstock.com/image-vector/man-icon-vector-260nw-1040084344.jpg" class="card-car-user avatar-bordered" />
       <% end %>
