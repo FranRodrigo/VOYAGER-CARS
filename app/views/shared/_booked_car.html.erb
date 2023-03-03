@@ -1,13 +1,16 @@
 <%= link_to car_path(car) do  %>
   <div class="card-car">
-    <%= cl_image_tag car.photos.first.key, height: 300, width: 400, crop: :fill %>
-    <%# <img src="https://www.topgear.com/sites/default/files/2022/07/12.jpg" /> %>
+    <% if car.photos.any? %>
+      <%= cl_image_tag car.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+     <img src="https://teja9.kuikr.com/images/car/default-cars.jpeg" />
+    <% end %>
     <div class="card-car-infos">
       <div>
-        <h2><%= car.brand.upcase %></h2>
-        <p><%= car.model %></p>
+        <h2><%= booking.pickup_day.strftime("%b %d") %> to <%= booking.return_day.strftime("%b %d, %Y") %></h2>
+        <p><%= car.location %></p>
       </div>
-      <h2 class="card-car-pricing"><%= car.price %> EUR</h2>
+      <h2 class="card-car-pricing"><%= (car.price*(booking.return_day-booking.pickup_day)).to_i %> EUR<p>total rate</p></h2>
       <%# TODO: make this piture come from the car dynamically %>
       <img src="https://www.shutterstock.com/image-vector/man-icon-vector-260nw-1040084344.jpg" class="card-car-user avatar-bordered" />
     </div>
