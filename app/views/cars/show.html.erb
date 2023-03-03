@@ -47,12 +47,11 @@
         <% end %>
       </div>
 
-      <%= simple_form_for [@car, @car.reviews.build] do |f| %>
+      <%= simple_form_for [@car, @car.reviews.build], local:true, data: { turbo:false } do |f| %>
         <%= f.input :rating, collection: 0..5 %>
-        <%= f.input :comment%>
+        <%= f.input :comment %>
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
-      <%= link_to "See all cars", car_path %>
     </div>
 
 
