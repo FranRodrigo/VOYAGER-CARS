@@ -12,4 +12,8 @@ class Car < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def owner?(user)
+    self.user == user
+  end
 end
