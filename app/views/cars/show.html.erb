@@ -1,66 +1,63 @@
 <div class="container">
-  <% @car.photos.each do |photo| %>
-  <%= cl_image_tag @car.photos.first.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
+  <div class="picture-car d-flex flex-column align-items-center">
+      <% @car.photos.each do |photo|  %>
+      <%= cl_image_tag @car.photos.first.key, height: 300, width: 400, crop: :fill, class: "picture-shadow" %>
+      <% end %>
 
-  <div class="car-details">
-    <h1><%= @car.brand %> (<%= @car.model %> from <%= @car.year %>)</h1>
-    <p><i class="fa-solid fa-coins"></i></i><%= @car.price %>,- € per day</p>
-
-    <p><i class="fa-solid fa-location-dot"></i> <%= @car.location %></p>
-    <p><i class="fa-solid fa-people-group"></i></i> <%= @car.capacity %> seats</p>
-    <% if @car.user == current_user %>
-      <%= link_to "Delete", car_path(@car), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-      <%= link_to "Update", edit_car_path(@car) %>
-    <% end %>
-  </div>
-
-  <% if @car.user != current_user %>
-    <h2>Book this car</h2>
-
-    <%= simple_form_for([@car, @booking], local:true, data: { turbo:false}) do |f| %>
-      <div data-controller="booking-price" data-booking-price-price-value="<%= @car.price %>">
-        <%= f.input :pickup_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "pickup", action: "change->booking-price#calcPrice" } } %>
-        <%= f.input :return_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "return", action: "change->booking-price#calcPrice" } } %>
-        <p>Price: <span data-booking-price-target="price">Please update dates</span></p>
-        <%= f.submit "Book it", class: "btn btn-primary", data: { action: "click->booking-price#getData" } %>
-      </div>
-    <% end %>
-  <% end %>
+    <div class="car-details pt-4 w-100">
+      <h1 class="text-center"><%= @car.brand.upcase %></h1>
+      <h5 class="border-bottom text-center"><%= @car.model %> from <%= @car.year %></h5>
+      <p class="text-center"><i class="fa-solid fa-coins"></i></i><%= @car.price %> EUR per day</p>
+      <p class="text-center"><i class="fa-solid fa-location-dot"></i> <%= @car.location %></p>
+      <p class="border-bottom text-center"><i class="fa-solid fa-people-group"></i></i> <%= @car.capacity %> seats</p>
 
 
+      <% if @car.user == current_user %>
+        <%= link_to "Delete", car_path(@car), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <%= link_to "Update", edit_car_path(@car) %>
+      <% end %>
+    </div>
 
-  <div class="list-group">
-        <% @car.reviews.each do |review| %>
-          <li class="list-group-item">
-            <small>
-              <% count = 0 %>
-              <% 5.times do %>
-                <% if review.rating > count %>
-                  <i class="fa-solid fa-star"></i>
-                <% else %>
-                  <i class="fa-regular fa-star"></i>
-                <% end %>
-                <% count += 1 %>
-              <% end %>
-            </small>
-            <p><%= review.comment %></p>
-          </li>
+    <div class="row py-4 w-100 border">
+      <% if @car.user != current_user %>
+        <h2>Book this car</h2>
+        <%= simple_form_for([@car, @booking], local:true, data: { turbo:false}) do |f| %>
+          <div data-controller="booking-price" data-booking-price-price-value="<%= @car.price %>">
+            <%= f.input :pickup_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "pickup", action: "change->booking-price#calcPrice" } } %>
+            <%= f.input :return_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "return", action: "change->booking-price#calcPrice" } } %>
+            <p>Price: <span data-booking-price-target="price">Please update dates</span></p>
+            <%= f.submit "Book it", class: "btn-show", data: { action: "click->booking-price#getData" } %>
+          </div>
         <% end %>
-      </div>
-
-      <%= simple_form_for [@car, @car.reviews.build], local:true, data: { turbo:false } do |f| %>
-        <%= f.input :rating, collection: 0..5 %>
-        <%= f.input :comment %>
-        <%= f.submit class: 'btn btn-primary' %>
       <% end %>
     </div>
 
 
+    <div class="row py-4 w-100">
+      <% @car.reviews.each do |review| %>
+        <li class="list-group-item">
+          <small>
+            <% count = 0 %>
+            <% 5.times do %>
+              <% if review.rating > count %>
+                <i class="fa-solid fa-star text-warning"></i>
+              <% else %>
+                <i class="fa-regular fa-star text-warning"></i>
+              <% end %>
+              <% count += 1 %>
+            <% end %>
+          </small>
+          <p><%= review.comment %></p>
+        </li>
+      <% end %>
 
 
+      <%= simple_form_for [@car, @car.reviews.build], local:true, data: { turbo:false } do |f| %>
+        <%= f.input :rating, collection: 0..5 %>
+        <%= f.input :comment %>
+        <%= f.submit class: 'btn-show' %>
+      <% end %>
+    </div>
 
-
-
-
+  </div>
 </div>
