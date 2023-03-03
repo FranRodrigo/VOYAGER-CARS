@@ -1,35 +1,30 @@
 <div class="container">
-  <h1>Hi, <%= @user.first_name %></h1>
+  <h1 id="nametag">Hi, <%= @user.first_name %></h1>
 
-  <h2 class="section-title">My Bookings</h2>
+  <h2 class="section-title">Your Bookings</h2>
   <% if @user.bookings.empty? %>
-    <p><strong>No cars booked...yet!</strong><p>
-    <p>Time to go..<i class="fa-solid fa-car-side"></i></p>
-    <%= link_to 'Book car', cars_path %>
+    <div class="d-flex justify-content-center">
+    <p>No bookings yet, what are you waiting for?  <i class="fa-solid fa-car-side"></i></p>
+    </div>
+    <a class="btn-dashboard btn-align-middle" <%= link_to 'BOOK CAR', cars_path %>
+    </a>
   <% else %>
-    <ul class="cards">
+    <div class="cards">
       <% @user.bookings.each do |b| %>
-        <li class="card-car">
-        <%= link_to car_path(b.car) do  %>
-          <%= cl_image_tag b.car.photos.first.key, height: 200, width: 400, crop: :fill %>
-          <div class="card-info">
-            <p class="duration"><%= b.pickup_day %> - <%= b.return_day %></p>
-            <h3 class="card-title"><%= b.car.brand %></h3>
-            <%= b.car.location %>
-          </div>
-          <% end %>
-        </li>
+          <%= render "shared/booked_car", car: b.car, booking: b %>
       <% end %>
-    </ul>
+    </div>
   <% end %>
 
   <h2 class="section-title">Cars You Offer</h2>
 
-  <%= link_to 'Add car', new_car_path %>
+  <a class="btn-dashboard" <%= link_to 'ADD CAR', new_car_path %>
+  </a>
 
-  <ul class="cards">
+
+  <div class="cards">
     <% @user_cars.each do |car|%>
       <%= render "shared/card_car", car: car %>
     <% end %>
-  </ul>
+  </div>
 </div>
