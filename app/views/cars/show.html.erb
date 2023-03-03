@@ -5,9 +5,9 @@
       <% end %>
 
     <div class="car-details pt-4 w-100">
-      <h1 class="text-center"><%= @car.brand %></h1>
+      <h1 class="text-center"><%= @car.brand.upcase %></h1>
       <h5 class="border-bottom text-center"><%= @car.model %> from <%= @car.year %></h5>
-      <p class="text-center"><i class="fa-solid fa-coins"></i></i><%= @car.price %>,- € per day</p>
+      <p class="text-center"><i class="fa-solid fa-coins"></i></i><%= @car.price %> EUR per day</p>
       <p class="text-center"><i class="fa-solid fa-location-dot"></i> <%= @car.location %></p>
       <p class="border-bottom text-center"><i class="fa-solid fa-people-group"></i></i> <%= @car.capacity %> seats</p>
 
@@ -26,7 +26,7 @@
             <%= f.input :pickup_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "pickup", action: "change->booking-price#calcPrice" } } %>
             <%= f.input :return_day, as: :date, html5: true, input_html: { data: { 'booking-price-target': "return", action: "change->booking-price#calcPrice" } } %>
             <p>Price: <span data-booking-price-target="price">Please update dates</span></p>
-            <%= f.submit "Book it", class: "btn btn-primary", data: { action: "click->booking-price#getData" } %>
+            <%= f.submit "Book it", class: "btn-show", data: { action: "click->booking-price#getData" } %>
           </div>
         <% end %>
       <% end %>
@@ -55,7 +55,7 @@
       <%= simple_form_for [@car, @car.reviews.build], local:true, data: { turbo:false } do |f| %>
         <%= f.input :rating, collection: 0..5 %>
         <%= f.input :comment %>
-        <%= f.submit class: 'btn btn-primary' %>
+        <%= f.submit class: 'btn-show' %>
       <% end %>
     </div>
 
