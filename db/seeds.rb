@@ -42,7 +42,7 @@ images = [
 # end
 
 10.times do |index|
-  attributes = { brand: Faker::Vehicle.manufacture, model: Faker::Vehicle.make, location: Faker::Address.city, number_plate: Faker::Vehicle.license_plate, capacity: Faker::Vehicle.door_count, year: Faker::Vehicle.year, price: Faker::Number.within(range: 20..100), user: john }
+  attributes = { brand: Faker::Vehicle.manufacture, model: Faker::Vehicle.make, location: Faker::Address.country, number_plate: Faker::Vehicle.license_plate, capacity: Faker::Vehicle.door_count, year: Faker::Vehicle.year, price: Faker::Number.within(range: 20..100), user: john }
   car = Car.new(attributes)
   file = URI.open(images[index])
   car.photos.attach(io: file, filename: "car.png", content_type: "image/png")
