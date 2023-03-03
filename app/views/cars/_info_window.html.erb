@@ -1,2 +1,3 @@
-<h2><%= car.price %></h2>
-<p><%= car.location %></p>
+<h2 class="title"><%= car.price %> EUR</h2>
+<p class="descr"><%= car.location %></p>
+<%= link_to "Book car", car_path(car), class: "btn-dash" %>

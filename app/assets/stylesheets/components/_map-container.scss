@@ -1,0 +1,37 @@
+.wrapper {
+  padding: 16px;
+  padding-top: 30px;
+}
+
+.wrapper .cards {
+  flex-grow: 1;
+  margin-right: 15px;
+}
+
+.wrapper .card-car {
+  margin-top: 0;
+}
+
+.wrapper .title,
+.wrapper .descr {
+  font-size: 18px;
+}
+
+.btn-dash {
+  color: white;
+  background-color: #3A506B;
+  padding: 0.4em 1em;
+  border-radius: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 8px;
+  opacity: .8;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-dash:hover {
+  background-color: #CED0CE;
+  opacity: .7;
+  color: #3A506B;
+  font-weight: 400;
+}
