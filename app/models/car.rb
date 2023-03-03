@@ -6,6 +6,9 @@ class Car < ApplicationRecord
 
   validates :brand, :model, :location, :number_plate, :capacity, :year, :price, presence: true
 
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
+
   include PgSearch::Model
   pg_search_scope :search_by_location,
     against: [ :location ],
