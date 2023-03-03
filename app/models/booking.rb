@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :car
   belongs_to :user
-  has_one :review
+  has_one :review, dependent: :destroy
 
   validate :not_owner
 
